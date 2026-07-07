@@ -57,6 +57,10 @@ label {
   -webkit-tap-highlight-color: transparent;
 }
 
+.hidden-field {
+  display: none;
+}
+
 .paint-stage {
   position: fixed;
   inset: 0;

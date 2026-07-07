@@ -82,7 +82,11 @@
           <p id="progressText">Question 1 of 6</p>
         </div>
 
-        <form id="feedbackForm" novalidate>
+        <form id="feedbackForm" name="artTeacherFeedback" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="artTeacherFeedback" />
+          <p class="hidden-field">
+            <label>Do not fill this out: <input name="bot-field" /></label>
+          </p>
           <fieldset class="question-card active" data-step="0">
             <legend>Who do you teach?</legend>
             <p class="question-note">This helps spot patterns across children, adults and mixed studios.</p>

@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: art-teacher-survey
-    env: node
-    plan: free
-    buildCommand: npm ci
-    startCommand: npm start
-    autoDeploy: true

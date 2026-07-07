@@ -21,13 +21,19 @@ Open `http://localhost:3333`.
 
 ## Feedback storage
 
-Submissions are saved to:
+Local Express submissions are saved to:
 
 ```text
 data/art-teacher-feedback.json
 ```
 
 That file is ignored by Git so private responses are not pushed to GitHub.
+
+On Netlify, submissions are captured through Netlify Forms under the form name:
+
+```text
+artTeacherFeedback
+```
 
 ## API
 
@@ -42,17 +48,15 @@ Required feedback fields:
 - `wish`
 - `email`
 
-## Hosting note
+## Netlify deployment
 
-Deploy this as a Node/Express web service, not as a static site.
+Deploy this as a static Netlify site.
 
-Recommended Render settings:
+Recommended Netlify settings:
 
-- Build command: `npm ci`
-- Start command: `npm start`
-- Environment: Node
-- Health check path: `/api/health`
+- Build command: leave blank
+- Publish directory: `public`
 
-The repo includes `render.yaml` and `Procfile` so Render/Railway-style hosts can detect the app correctly.
+The repo includes `netlify.toml`, so Netlify should detect `public` automatically and route deep links back to `index.html`.
 
-For a permanent production version, connect `/api/feedback` to a database, Google Sheet, Airtable, or email service. Local JSON storage is useful for previews, but hosted platforms often reset local files between deploys.
+For a permanent Node/Express deployment on Render or Railway, use `npm ci` as the build command and `npm start` as the start command.

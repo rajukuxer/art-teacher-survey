@@ -142,6 +142,40 @@ function formPayload() {
   };
 }
 
+function encodedFormBody(payload) {
+  const body = new URLSearchParams();
+  body.set("form-name", "artTeacherFeedback");
+  Object.entries(payload).forEach(([key, value]) => {
+    body.set(key, Array.isArray(value) ? value.join(", ") : String(value ?? ""));
+  });
+  return body.toString();
+}
+
+function shouldUseNetlifyForms() {
+  const localHosts = new Set(["localhost", "127.0.0.1", "0.0.0.0"]);
+  return form.dataset.netlify === "true" && !localHosts.has(window.location.hostname);
+}
+
+async function submitFeedback(payload) {
+  if (shouldUseNetlifyForms()) {
+    const response = await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encodedFormBody(payload)
+    });
+    if (!response.ok) throw new Error("Could not save Netlify form response");
+    return;
+  }
+
+  const response = await fetch("/api/feedback", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) throw new Error("Could not save response");
+}
+
 function showSuccess() {
   successModal.classList.add("open");
   successModal.setAttribute("aria-hidden", "false");
@@ -182,13 +216,7 @@ form.addEventListener("submit", async (event) => {
   formStatus.textContent = "";
 
   try {
-    const response = await fetch("/api/feedback", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formPayload())
-    });
-
-    if (!response.ok) throw new Error("Could not save response");
+    await submitFeedback(formPayload());
 
     form.reset();
     currentStep = 0;
