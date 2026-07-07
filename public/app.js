@@ -43,12 +43,47 @@ function fieldIsFilled(field) {
   return field.value.trim().length > 0;
 }
 
+function fieldErrorMessage(field) {
+  if (field.name === "audience") return "Please choose who you teach.";
+  if (field.name === "classSetup") return "Please tell us how your classes are usually run.";
+  if (field.name === "worksWell") return "Please share what already works well.";
+  if (field.name === "wish") return "Please describe what a helpful digital assistant should do first.";
+  if (field.name === "email") {
+    return field.value.trim() ? "Please enter a valid email address." : "Please enter your email address.";
+  }
+  return "Please complete the highlighted field.";
+}
+
+function clearValidationState() {
+  activeCard().classList.remove("has-error");
+  activeCard().querySelectorAll(".invalid-field").forEach((field) => {
+    field.classList.remove("invalid-field");
+    field.removeAttribute("aria-invalid");
+  });
+}
+
 function validateCurrentStep() {
   const requiredFields = [...activeCard().querySelectorAll("[required]")];
-  const valid = requiredFields.every(fieldIsFilled);
-  activeCard().classList.toggle("has-error", !valid);
-  formStatus.textContent = valid ? "" : "Please answer this question before moving on.";
-  return valid;
+  clearValidationState();
+
+  const invalidField = requiredFields.find((field) => {
+    if (!fieldIsFilled(field)) return true;
+    if (field.type === "email" && !field.checkValidity()) return true;
+    return false;
+  });
+
+  if (!invalidField) {
+    formStatus.textContent = "";
+    return true;
+  }
+
+  activeCard().classList.add("has-error");
+  invalidField.classList.add("invalid-field");
+  invalidField.setAttribute("aria-invalid", "true");
+  formStatus.textContent = fieldErrorMessage(invalidField);
+  invalidField.scrollIntoView({ block: "center", behavior: "smooth" });
+  invalidField.focus({ preventScroll: true });
+  return false;
 }
 
 function updateProgress() {
@@ -201,7 +236,7 @@ backBtn.addEventListener("click", () => {
 });
 
 form.addEventListener("input", () => {
-  activeCard().classList.remove("has-error");
+  clearValidationState();
   formStatus.textContent = "";
   updateTimeVisual();
   updatePortrait();

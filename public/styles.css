@@ -518,7 +518,7 @@ legend {
 }
 
 .ink-dot {
-  width: 10px;
+  width: 38px;
   height: 10px;
   flex: 0 0 auto;
   border-radius: 50%;
@@ -582,9 +582,7 @@ form {
   display: block;
 }
 
-.question-card.has-error textarea,
-.question-card.has-error .option-grid,
-.question-card.has-error .chips-grid {
+.question-card.has-error .option-grid {
   outline: 2px solid var(--danger);
   outline-offset: 5px;
 }
@@ -690,6 +688,12 @@ textarea:focus,
   box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.16);
 }
 
+textarea.invalid-field,
+.single-line.invalid-field {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.18);
+}
+
 .range-label {
   display: grid;
   gap: 18px;
@@ -739,6 +743,10 @@ input[type="range"] {
   gap: 10px;
   align-self: end;
   background: linear-gradient(180deg, transparent, rgba(20, 25, 50, 0.96) 28%);
+}
+
+.form-actions .submit-button {
+  grid-column: 1 / -1;
 }
 
 .submit-button[hidden],
@@ -969,6 +977,10 @@ input[type="range"] {
 
   .contact-row {
     grid-template-columns: 1fr 1.35fr;
+  }
+
+  .form-actions .submit-button {
+    grid-column: auto;
   }
 
   .insight-panel {
