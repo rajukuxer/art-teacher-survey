@@ -44,4 +44,15 @@ Required feedback fields:
 
 ## Hosting note
 
-For a permanent hosted version, connect `/api/feedback` to a database, Google Sheet, Airtable, or email service. Local JSON storage is useful for previews, but hosted platforms often reset local files between deploys.
+Deploy this as a Node/Express web service, not as a static site.
+
+Recommended Render settings:
+
+- Build command: `npm ci`
+- Start command: `npm start`
+- Environment: Node
+- Health check path: `/api/health`
+
+The repo includes `render.yaml` and `Procfile` so Render/Railway-style hosts can detect the app correctly.
+
+For a permanent production version, connect `/api/feedback` to a database, Google Sheet, Airtable, or email service. Local JSON storage is useful for previews, but hosted platforms often reset local files between deploys.
