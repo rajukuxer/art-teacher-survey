@@ -507,7 +507,7 @@ legend {
   z-index: 1;
   margin-bottom: 18px;
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
   color: var(--muted);
   font-size: 0.86rem;
@@ -519,14 +519,29 @@ legend {
 }
 
 .ink-dot {
-  width: 38px;
-  height: 10px;
+  width: 54px;
+  min-width: 54px;
+  height: 14px;
   flex: 0 0 auto;
-  border-radius: 50%;
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.ink-dot span {
+  width: 14px;
+  height: 9px;
+  border-radius: 999px;
+  display: block;
   background: var(--primary);
-  box-shadow:
-    14px 0 0 var(--accent),
-    28px 0 0 #dc6c5a;
+}
+
+.ink-dot span:nth-child(2) {
+  background: var(--accent);
+}
+
+.ink-dot span:nth-child(3) {
+  background: #dc6c5a;
 }
 
 .progress-wrap {
