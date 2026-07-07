@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Art Teacher Studio Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="paint-stage" aria-hidden="true">
+      <span class="wash wash-coral"></span>
+      <span class="wash wash-teal"></span>
+      <span class="wash wash-gold"></span>
+      <span class="brush-stroke stroke-one"></span>
+      <span class="brush-stroke stroke-two"></span>
+    </div>
+
+    <main class="app-shell">
+      <section class="intro-panel" aria-labelledby="pageTitle">
+        <div class="hero-3d" aria-hidden="true">
+          <div class="depth-grid"></div>
+          <div class="orbital-ring ring-one"></div>
+          <div class="orbital-ring ring-two"></div>
+          <div class="studio-cube cube-coral"></div>
+          <div class="studio-cube cube-teal"></div>
+          <div class="studio-cube cube-gold"></div>
+          <div class="floating-panel panel-main">
+            <span class="panel-kicker">studio flow</span>
+            <strong>Teach</strong>
+            <em>create</em>
+          </div>
+          <div class="floating-panel panel-admin">
+            <span>Bookings</span>
+            <span>Payments</span>
+            <span>Parents</span>
+          </div>
+          <div class="glass-slab slab-one"></div>
+          <div class="glass-slab slab-two"></div>
+        </div>
+        <nav class="topbar" aria-label="Page">
+          <a class="brand" href="#pageTitle">Studio Notes</a>
+          <a class="quiet-link" href="#about">About</a>
+        </nav>
+
+        <div class="hero-copy">
+          <p class="eyebrow">A three-minute conversation for art teachers</p>
+          <h1 id="pageTitle">Spend more time teaching art and less time managing admin.</h1>
+          <p class="lede">
+            Share how you manage classes, students, parents, bookings, payments and communication. Your answers will help shape practical AI and digital tools for independent art teachers.
+          </p>
+          <a class="primary-link" href="#feedbackForm">Share your challenge</a>
+        </div>
+
+        <div class="studio-meter" aria-label="What this research explores">
+          <div>
+            <strong>3 min</strong>
+            <span>short conversation</span>
+          </div>
+          <div>
+            <strong>0 pitch</strong>
+            <span>research only</span>
+          </div>
+          <div>
+            <strong>1 goal</strong>
+            <span>less admin</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-panel" aria-label="Feedback form">
+        <div class="form-heading">
+          <span class="ink-dot"></span>
+          <p>Answer like you are talking across a studio table.</p>
+        </div>
+        <div class="progress-wrap" aria-hidden="true">
+          <div class="progress-track">
+            <span id="progressBar"></span>
+          </div>
+          <p id="progressText">Question 1 of 6</p>
+        </div>
+
+        <form id="feedbackForm" novalidate>
+          <fieldset class="question-card active" data-step="0">
+            <legend>Who do you teach?</legend>
+            <p class="question-note">This helps spot patterns across children, adults and mixed studios.</p>
+            <div class="option-grid">
+              <label><input type="radio" name="audience" value="Children" required /> <span>Children</span></label>
+              <label><input type="radio" name="audience" value="Adults" /> <span>Adults</span></label>
+              <label><input type="radio" name="audience" value="Both children and adults" /> <span>Both</span></label>
+              <label><input type="radio" name="audience" value="Other" /> <span>Other</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="question-card" data-step="1">
+            <legend>What do you teach, and how are classes usually run?</legend>
+            <p class="question-note">A line or two is perfect.</p>
+            <textarea name="classSetup" rows="6" required placeholder="Example: weekly watercolour classes, holiday workshops, private lessons, parent WhatsApp group..."></textarea>
+          </fieldset>
+
+          <fieldset class="question-card" data-step="2">
+            <legend>Which admin jobs take the most time?</legend>
+            <p class="question-note">Pick as many as you like. Add your own if something is missing.</p>
+            <div class="chips-grid" id="adminOptions">
+              <label><input type="checkbox" name="adminTasks" value="Bookings" /> <span><b>01</b>Bookings</span></label>
+              <label><input type="checkbox" name="adminTasks" value="Payments" /> <span><b>02</b>Payments</span></label>
+              <label><input type="checkbox" name="adminTasks" value="Parent messages" /> <span><b>03</b>Parent messages</span></label>
+              <label><input type="checkbox" name="adminTasks" value="Reminders" /> <span><b>04</b>Reminders</span></label>
+              <label><input type="checkbox" name="adminTasks" value="Student records" /> <span><b>05</b>Student records</span></label>
+              <label><input type="checkbox" name="adminTasks" value="Attendance" /> <span><b>06</b>Attendance</span></label>
+              <label><input type="checkbox" name="adminTasks" value="Marketing" /> <span><b>07</b>Marketing</span></label>
+              <label><input type="checkbox" name="adminTasks" value="Lesson planning" /> <span><b>08</b>Lesson planning</span></label>
+            </div>
+            <input class="single-line" type="text" name="otherAdminTask" placeholder="Something else?" />
+          </fieldset>
+
+          <fieldset class="question-card" data-step="3">
+            <legend>How much weekly time could technology give back?</legend>
+            <p class="question-note">Move the brush to estimate the admin time you would love to save.</p>
+            <label class="range-label">
+              <input id="timeSaved" type="range" name="timeSaved" min="1" max="10" value="3" />
+              <span><strong id="timeSavedValue">3</strong> hours per week</span>
+            </label>
+            <div class="time-visual" aria-hidden="true">
+              <span id="timeBrush"></span>
+            </div>
+          </fieldset>
+
+          <fieldset class="question-card" data-step="4">
+            <legend>What already works well?</legend>
+            <p class="question-note">Useful tools, habits or systems are just as important as pain points.</p>
+            <textarea name="worksWell" rows="5" required placeholder="What do you want to keep, protect or improve gently?"></textarea>
+          </fieldset>
+
+          <fieldset class="question-card" data-step="5">
+            <legend>If you had a helpful digital assistant, what should it do first?</legend>
+            <p class="question-note">Imagine the most useful small thing, not a giant complicated system.</p>
+            <textarea name="wish" rows="6" required placeholder="Example: send payment reminders, collect class bookings, summarise parent questions, organise student progress notes..."></textarea>
+            <div class="contact-row">
+              <input class="single-line" type="text" name="name" placeholder="Your name (optional)" />
+              <input class="single-line" type="email" name="email" required placeholder="Email address" autocomplete="email" />
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <button class="secondary-button" type="button" id="backBtn">Back</button>
+            <button class="primary-button" type="button" id="nextBtn">Next</button>
+            <button class="primary-button submit-button" type="submit" id="submitBtn">Send my studio note</button>
+          </div>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <aside class="insight-panel">
+        <div>
+          <p class="eyebrow">Live reflection</p>
+          <h2>Your admin portrait</h2>
+          <p id="portraitText">Choose a few answers and this space will reflect the shape of your studio day.</p>
+        </div>
+        <div class="admin-map" aria-hidden="true">
+          <svg viewBox="0 0 220 220">
+            <path id="adminPath" d="M110 110 L110 32 L174 68 L178 150 L98 188 L38 136 L52 62 Z"></path>
+            <circle class="core" cx="110" cy="110" r="24"></circle>
+            <g id="adminNodes"></g>
+          </svg>
+          <span id="mapLabel">studio</span>
+        </div>
+      </aside>
+
+      <section class="about-panel" id="about">
+        <p class="eyebrow">About me</p>
+        <p>
+          I am a professional fine artist with more than 20 years of experience in UX and product design. I now use AI and modern technology to explore practical solutions for real-life problems.
+        </p>
+        <p>
+          Because I understand both the artistic and product-design worlds, I want to create something genuinely useful for people teaching art to children and adults.
+        </p>
+      </section>
+    </main>
+
+    <div class="success-modal" id="successModal" aria-hidden="true">
+      <div class="success-card" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+        <button id="closeSuccess" class="icon-button" type="button" aria-label="Close">x</button>
+        <p class="eyebrow">Thank you</p>
+        <h2 id="successTitle">Your studio note has been saved.</h2>
+        <p>I will review the responses and explore where practical technology, automation or AI could reduce everyday admin.</p>
+      </div>
+    </div>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
